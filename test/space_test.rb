@@ -1,3 +1,4 @@
+require './test/test_helper.rb'
 require './lib/space.rb'
 require 'minitest/autorun'
 require 'minitest/pride'
