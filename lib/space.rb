@@ -1,6 +1,7 @@
 class Space
   attr_reader :status,
               :occupied
+              
   def initialize
     @status = ' '
     @occupied = false
@@ -13,7 +14,7 @@ class Space
   def hit
     if @occupied == true
       @status = 'H'
-    elsif @occupied == false
+    else
       @status = 'M'
     end
   end
