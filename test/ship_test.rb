@@ -19,4 +19,18 @@ class ShipTest < MiniTest::Test
     carrier = Ship.new(3)
     assert_equal 3, carrier.hit_points
   end
+
+  def test_ship_can_take_damage
+    destroyer = Ship.new(2)
+    destroyer.damage
+    assert_equal 1, destroyer.hit_points
+  end
+
+  def test_ship_can_be_sunk
+    carrier = Ship.new(3)
+    carrier.damage
+    carrier.damage
+    carrier.damage
+    assert_equal false, carrier.afloat
+  end
 end
