@@ -10,4 +10,19 @@ class ShipTest < MiniTest::Test
     player = Player.new
     assert_instance_of Player, player
   end
+
+  def test_player_starts_with_two_ships
+    player = Player.new
+    assert_instance_of Ship, player.destroyer
+    assert_instance_of Ship, player.carrier
+  end
+
+  def test_player_can_place_destroyer
+    player = Player.new
+    player.place_destroyer('A2', 'B2')
+    assert_equal ['A2', 'B2'], player.destroyer_position
+    end
+
+  def test_player_can_place_carrier
+  end
 end
