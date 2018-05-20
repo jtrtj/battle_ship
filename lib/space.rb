@@ -1,9 +1,20 @@
 class Space
+  attr_reader :status,
+              :occupied
   def initialize
-    @ship = false
+    @status = ' '
+    @occupied = false
   end
 
-  def ship?
-    @ship
+  def occupy
+    @occupied = true
+  end
+
+  def hit
+    if @occupied == true
+      @status = 'H'
+    elsif @occupied == false
+      @status = 'M'
+    end
   end
 end
