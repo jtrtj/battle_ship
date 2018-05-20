@@ -8,6 +8,10 @@ class Ship
 
   def damage
     @hit_points -= 1
+    sink
+  end
+
+  def sink
     if @hit_points == 0
       @afloat = false
     end
