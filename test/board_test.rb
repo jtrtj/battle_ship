@@ -15,7 +15,6 @@ class BoardTest < MiniTest::Test
 
   def test_board_is_created_with_sixteen_spaces
     board = Board.new
-    assert_equal 16, board.coordiantes.flatten.length
+    assert_equal 16, board.spaces.flatten.length
   end
-
 end
