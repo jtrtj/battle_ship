@@ -1,9 +1,11 @@
 class Space
   attr_reader :status,
-              :occupied
-              
-  def initialize
-    @status = ' '
+              :occupied,
+              :name
+
+  def initialize(name)
+    @name     = name
+    @status   = ' '
     @occupied = false
   end
 
