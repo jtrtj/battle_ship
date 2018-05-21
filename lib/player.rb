@@ -24,7 +24,18 @@ class Player
     end
   end
 
-  def place_carrier(first_space, second_space)
+  def place_carrier(first, second)
+    if check_if_spaces_occupied(first, second) == true
+      "Sorry, one of you spaces is occuppied"
+    elsif check_if_diagonal(first, second) == false
+      "Sorry, ships cannot be placed diagonally"
+    #make sure ship doesn't wrap around the board
+    else
+      @carrier_position += match_spaces_and_placements(first, second)
+      make_middle_space_for_carrier
+      binding.pry
+      mark_spaces_occupied(@carrier_position)
+    end
   end
 
   def check_if_diagonal(first, second)
@@ -34,6 +45,20 @@ class Player
   def check_if_spaces_occupied(first, second)
     occupied_spaces.include?(first) || occupied_spaces.include?(second)
   end
+
+  def make_middle_space_for_carrier
+    if @carrier_position.first.name[0] == @carrier_position.last.name[0]
+      mid_space = "#{@carrier_position.first.name[0]}".concat("#{(@carrier_position.last.name[1].to_i) -1}")
+      all_spaces.each do |space|
+        if space.name == mid_space
+          @carrier_position << space
+        end
+      end
+    end
+  end
+  # def check_if_ship_wraps(first, second)
+  #   # if first placement - second placement is
+  # end
 
   def occupied_spaces
     all_spaces.map do |space|

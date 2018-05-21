@@ -20,7 +20,10 @@ class ShipTest < MiniTest::Test
   end
 
   def test_player_can_place_carrier
-    skip
+    player = Player.new
+    player.place_carrier('b2', 'b4')
+
+    assert_equal [player.board.spaces[1][1], player.board.spaces[1][3], player.board.spaces[1][2]], player.carrier_position
   end
 
   def test_check_if_spaces_occupued
@@ -67,4 +70,11 @@ class ShipTest < MiniTest::Test
     assert player.board.spaces[1][1].occupied?
     assert player.board.spaces[1][2].occupied?
   end
+
+  # def test_it_can_fill_in_middle_carrier_space
+  #   skip
+  #   player = Player.new
+  #   player
+  # end
+
 end
