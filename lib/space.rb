@@ -13,6 +13,10 @@ class Space
     @occupied = true
   end
 
+  def occupied?
+    @occupied
+  end
+  
   def hit
     if @occupied == true
       @status = 'H'
