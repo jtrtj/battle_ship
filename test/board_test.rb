@@ -12,7 +12,7 @@ class BoardTest < MiniTest::Test
     board = Board.new
     assert_instance_of Board, board
   end
-  
+
   def test_board_is_created_with_sixteen_spaces
     board = Board.new
     assert_equal 16, board.coordiantes.flatten.length

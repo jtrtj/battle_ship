@@ -16,19 +16,36 @@ class Player
     @destroyer_position += [firt_space, second_space]
     #place ship using two coordiantes
     #make sure neither space is occupied
-    board.firt_space.occupied || board.second_space.occupied
+    check_if_spaces_occupied(first, second)
     #make sure ship is not diagonal
-    first_space.chars[0] == second_space.chars[0]
-    first_space.chars[1] == second_space.chars[1]
+    check_if_diagonal(first, second)
     #make sure ship doesn't wrap around the board
     first_space.chars[1]+second_space.chars[1] >= 2
     #record position
   end
-  def check_if_spaces_occupied(first, second)
-    first =
-    if @board.first.occupied || @board.second.occupied
-    end
-  end
+
   def place_carrier(first_space, second_space)
   end
+
+  def check_if_diagonal(first, second)
+    first.chars[0] == second.chars[0] || first.chars[1] == second.chars[1]
+  end
+
+  def check_if_spaces_occupied(first, second)
+    occupied_spaces.include?(first) || occupied_spaces.include?(second)
+  end
+
+
+  def all_spaces
+    @board.spaces.flatten
+  end
+
+  def occupied_spaces
+    all_spaces.map do |space|
+      if space.occupied == true
+        space.name
+      end
+    end
+  end
+
 end

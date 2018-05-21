@@ -26,7 +26,7 @@ class ShipTest < MiniTest::Test
     player = Player.new
     player.place_destroyer('A2', 'B2')
     assert_equal ['A2', 'B2'], player.destroyer_position
-    end
+  end
 
   def test_player_can_place_carrier
     skip
@@ -34,8 +34,16 @@ class ShipTest < MiniTest::Test
 
   def test_check_if_spaces_occupued
     player = Player.new
-    player_board = Board.new
+    player.board.spaces[0][0].occupy
 
     assert player.check_if_spaces_occupied('a1', 'a2')
+    refute player.check_if_spaces_occupied('a2', 'a3')
+  end
+
+  def test_if_piece_can_be_placed_diagonally
+    player = Player.new
+    
+    assert player.check_if_diagonal('a1', 'a2')
+    refute player.check_if_diagonal('b1', 'a2')
   end
 end
