@@ -42,8 +42,15 @@ class ShipTest < MiniTest::Test
 
   def test_if_piece_can_be_placed_diagonally
     player = Player.new
-    
+
     assert player.check_if_diagonal('a1', 'a2')
     refute player.check_if_diagonal('b1', 'a2')
+  end
+
+  def test_it_stores_players_placements
+    player = Player.new
+    actual = player.match_spaces_and_placements('b2', 'b3')
+
+    assert_equal [player.board.spaces[1][1], player.board.spaces[1][2]], actual
   end
 end
