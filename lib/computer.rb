@@ -1,16 +1,14 @@
 require './lib/input_converter.rb'
-require './lib/place_destroyer.rb'
 
-class Player
+class Computer
   include InputConverter
   attr_reader :destroyer,
               :carrier,
               :destroyer_position,
               :carrier_position,
-              :board
-  attr_writer :destroyer_position,
-              :carrier_position,
-              :board
+              :board,
+              :destroyer_spaces
+
   def initialize(enemy = nil)
     @enemy              = enemy
     @destroyer          = Ship.new(2)
@@ -18,21 +16,30 @@ class Player
     @destroyer_position = []
     @carrier_position   = []
     @board              = Board.new
+    @destroyer_spaces   =
+    [['00', '01'], ['01', '02'], ['02', '03'],
+    ['10', '11'], ['11', '12'], ['12', '13'],
+    ['20', '21'], ['21', '22'], ['22', '23'],
+    ['30', '31'], ['31', '32'], ['32', '33'],
+    ['00', '10'], ['01', '11'], ['02', '12'],
+    ['03', '13'], ['10', '20'], ['11', '21'],
+    ['12', '22'], ['13', '23'], ['20', '30'],
+    ['21', '31'], ['22', '32'], ['23', '33']]
   end
 
-  def place_destroyer(first, second)
-    first = convert_letter_to_int(first)
-    second = convert_letter_to_int(second)
-    if check_if_spaces_occupied(first, second) == true
-      "Sorry, one of you spaces is occuppied"
-    elsif check_if_diagonal(first, second) == false
-      "Sorry, ships cannot be placed diagonally"
-    #make sure ship doesn't wrap around the board
-    else
+
+  def place_destroyer
+      position = pick_a_destroyer_position
+      first = position[0]
+      second = position[1]
       @destroyer_position += match_spaces_and_placements(first, second)
       mark_spaces_occupied(@destroyer_position)
       "Your Destroyer has been placed."
-    end
+  end
+
+  def pick_a_destroyer_position
+    # pick = rand(1..24)
+    @destroyer_spaces[rand(1..24)]
   end
 
   def place_carrier(first, second)
