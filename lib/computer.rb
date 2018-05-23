@@ -25,6 +25,15 @@ class Computer
     ['03', '13'], ['10', '20'], ['11', '21'],
     ['12', '22'], ['13', '23'], ['20', '30'],
     ['21', '31'], ['22', '32'], ['23', '33']]
+    @carrier_spaces =
+    [['00', '01', '02'], ['01', '02', '03'],
+     ['10', '11', '12'], ['11', '12', '13'],
+     ['20', '21', '22'], ['21', '22', '23'],
+     ['30', '31', 'd3'], ['31', '32', '33'],
+     ['00', '10', '20'], ['01', '11', '21'],
+     ['02', '12', '22'], ['03', '13', '23'],
+     ['10', '20', '30'], ['11', '21', '31'],
+     ['12', '22', '32'], ['13', '23', '33']]
   end
 
 
@@ -32,14 +41,23 @@ class Computer
       position = pick_a_destroyer_position
       first = position[0]
       second = position[1]
-      @destroyer_position += match_spaces_and_placements(first, second)
+      @destroyer_position = match_spaces_and_placements(first, second)
       mark_spaces_occupied(@destroyer_position)
       "Your Destroyer has been placed."
   end
 
+  def place_carrier
+
+  end
+
   def pick_a_destroyer_position
-    # pick = rand(1..24)
     @destroyer_spaces[rand(1..24)]
+  end
+
+  def availible_spaces(choices)
+    availible_spaces = all_spaces.map do |space|
+      if space.occupied?
+
   end
 
   def place_carrier(first, second)
@@ -77,43 +95,6 @@ class Computer
     @enemy.carrier_position.each do |position|
       if position.name == guess
         @enemy.carrier.damage
-      end
-    end
-  end
-
-  def check_if_diagonal(first, second)
-    first.chars[0].to_i == second.chars[0].to_i || first.chars[1].to_i == second.chars[1].to_i
-  end
-
-  def check_if_spaces_occupied(first, second)
-    occupied_spaces.include?(first) || occupied_spaces.include?(second)
-  end
-
-  def make_middle_space_for_carrier
-    if @carrier_position.first.name[0] == @carrier_position.last.name[0]
-      mid_space = "#{@carrier_position.first.name[0]}".concat("#{(@carrier_position.last.name[1].to_i) -1}")
-      all_spaces.each do |space|
-        if space.name == mid_space
-          @carrier_position << space
-        end
-      end
-    elsif @carrier_position.first.name[1] == @carrier_position.last.name[1]
-      mid_space = "#{(@carrier_position.last.name[0].to_i) -1}".concat("#{@carrier_position.first.name[1]}")
-      all_spaces.each do |space|
-        if space.name == mid_space
-          @carrier_position << space
-        end
-      end
-    end
-  end
-  # def check_if_ship_wraps(first, second)
-  #   # if first placement - second placement is
-  # end
-
-  def occupied_spaces
-    all_spaces.map do |space|
-      if space.occupied == true
-        space.name
       end
     end
   end

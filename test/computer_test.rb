@@ -4,7 +4,6 @@ require './lib/player.rb'
 require './lib/ship.rb'
 require './lib/board.rb'
 require './lib/space.rb'
-require './lib/place_destroyer.rb'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
@@ -18,9 +17,21 @@ class ComputerTest < MiniTest::Test
   def test_it_can_place_destroyer
     computer = Computer.new
     computer.place_destroyer
-
     refute computer.destroyer_position.empty?
     assert_equal 2, computer.destroyer_position.length
-    assert (computer.destroyer_position & computer.destroyer_spaces).empty?
+  end
+
+  def test_it_marks_spaces_occupied_after_storing_ship_placement
+    computer = Computer.new
+    computer.place_destroyer
+
+    assert computer.destroyer_position[0].occupied?
+    assert computer.destroyer_position[1].occupied?
+  end
+
+  def test_it_wont_choose_an_occupied_space
+    computer = Computer.new
+    computer.availible_spaces(computer.carrier_spaces)
+
   end
 end

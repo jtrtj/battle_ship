@@ -1,5 +1,4 @@
 require './lib/input_converter.rb'
-require './lib/place_destroyer.rb'
 
 class Player
   include InputConverter
