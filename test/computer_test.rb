@@ -29,9 +29,12 @@ class ComputerTest < MiniTest::Test
     assert computer.destroyer_position[1].occupied?
   end
 
-  def test_it_wont_choose_an_occupied_space
+  def test_it_wont_choose_a_space_its_destroyer_occupies
     computer = Computer.new
-    computer.availible_spaces(computer.carrier_spaces)
+    computer.place_destroyer
+    availible_spaces = computer.availible_spaces(computer.carrier_spaces)
 
+    refute availible_spaces.any? {|choice| choice.include?(computer.destroyer_position[0].name)}
+    refute availible_spaces.any? {|choice| choice.include?(computer.destroyer_position[1].name)}
   end
 end

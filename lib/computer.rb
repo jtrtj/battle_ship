@@ -7,7 +7,8 @@ class Computer
               :destroyer_position,
               :carrier_position,
               :board,
-              :destroyer_spaces
+              :destroyer_spaces,
+              :carrier_spaces
 
   def initialize(enemy = nil)
     @enemy              = enemy
@@ -47,7 +48,7 @@ class Computer
   end
 
   def place_carrier
-
+    availible_spaces(@carrier_spaces)
   end
 
   def pick_a_destroyer_position
@@ -55,9 +56,17 @@ class Computer
   end
 
   def availible_spaces(choices)
-    availible_spaces = all_spaces.map do |space|
-      if space.occupied?
-
+    availible_spaces = []
+    choices.map do |choice|
+      if !choice.include?(destroyer_position[0].name)
+        availible_spaces << choice
+      elsif
+         !choice.include?(destroyer_position[1].name)
+         availible_spaces << choice
+      end
+    end
+    availible_spaces
+    binding.pry
   end
 
   def place_carrier(first, second)
