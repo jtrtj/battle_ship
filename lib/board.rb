@@ -13,6 +13,7 @@ class Board
         Space.new(row.to_s + column.to_s)
       end
     end
+    binding.pry
   end
 
   def print_board
