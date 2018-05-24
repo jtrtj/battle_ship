@@ -21,6 +21,11 @@ class ComputerTest < MiniTest::Test
     assert_equal 2, computer.destroyer_position.length
   end
 
+  def test_it_can_place_carrier
+    computer = Computer.new
+    computer.place_destroyer
+    computer.place_carrier
+  end
   def test_it_marks_spaces_occupied_after_storing_ship_placement
     computer = Computer.new
     computer.place_destroyer
@@ -34,7 +39,7 @@ class ComputerTest < MiniTest::Test
     computer.place_destroyer
     availible_spaces = computer.availible_spaces(computer.carrier_spaces)
 
-    refute availible_spaces.any? {|choice| choice.include?(computer.destroyer_position[0].name)}
-    refute availible_spaces.any? {|choice| choice.include?(computer.destroyer_position[1].name)}
+    refute availible_spaces.any? {|choice| choice.include?(computer.destroyer_position[0])}
+    refute availible_spaces.any? {|choice| choice.include?(computer.destroyer_position[1])}
   end
 end

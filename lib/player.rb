@@ -28,7 +28,7 @@ class Player
       "Sorry, ships cannot be placed diagonally"
     #make sure ship doesn't wrap around the board
     else
-      @destroyer_position += match_spaces_and_placements(first, second)
+      @destroyer_position = match_spaces_and_placements(first, second)
       mark_spaces_occupied(@destroyer_position)
       "Your Destroyer has been placed."
     end

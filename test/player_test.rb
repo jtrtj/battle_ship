@@ -3,27 +3,23 @@ require './lib/player.rb'
 require './lib/ship.rb'
 require './lib/board.rb'
 require './lib/space.rb'
-require './lib/place_destroyer.rb'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
 
 class ShipTest < MiniTest::Test
   def test_it_exists
-    # skip
     player = Player.new
     assert_instance_of Player, player
   end
 
   def test_player_starts_with_two_ships
-    # skip
     player = Player.new
     assert_instance_of Ship, player.destroyer
     assert_instance_of Ship, player.carrier
   end
 
   def test_player_can_place_destoyer
-    # skip
     player = Player.new
     player.place_destroyer('a2', 'a3')
 
@@ -40,7 +36,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_player_can_place_carrier
-    # skip
     player = Player.new
     player.place_carrier('b2', 'b4')
 
@@ -64,7 +59,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_player_can_launch_missile
-    # skip
     opponent = Player.new
     player = Player.new(opponent)
     opponent.place_destroyer('a1', 'a2')
@@ -75,7 +69,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_check_if_spaces_occupied
-    # skip
     player = Player.new
     player.board.spaces[0][0].occupy
 
@@ -84,7 +77,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_if_piece_can_be_placed_diagonally
-    # skip
     player = Player.new
 
     assert player.check_if_diagonal('01', '02')
@@ -94,7 +86,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_it_matches_placements_to_spaces
-    # skip
     player = Player.new
     actual = player.match_spaces_and_placements('11', '12')
 
@@ -102,7 +93,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_it_tells_you_if_placement_is_invalid
-    # skip
     player = Player.new
     player.board.spaces[0][0].occupy
 
@@ -111,7 +101,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_it_stores_placements_if_valid
-    # skip
     player = Player.new
     player.place_destroyer('b2', 'b3')
 
@@ -119,7 +108,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_it_marks_spaces_occupied_after_storing_ship_placement
-    # skip
     player = Player.new
     player.place_destroyer('b2', 'b3')
 
@@ -128,7 +116,6 @@ class ShipTest < MiniTest::Test
   end
 
   def test_input_converter_module_works
-    # skip
     player = Player.new
     actual = player.convert_letter_to_int('a1')
     expected = '00'
