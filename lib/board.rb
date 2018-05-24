@@ -1,15 +1,16 @@
 require './lib/space.rb'
 
 class Board
+  BOARD_SIZE = 4
   attr_reader :spaces
   def initialize
-    @spaces = Board.of_size(4)
+    @spaces = Board.of_size
   end
 
-  def self.of_size(board_size)
-    (0...board_size).map do |space|
-      (0...board_size).map do |space_2|
-        Space.new(space.to_s + space_2.to_s)
+  def self.of_size
+    Array.new(BOARD_SIZE) do |row|
+      Array.new(BOARD_SIZE) do |column|
+        Space.new(row.to_s + column.to_s)
       end
     end
   end
@@ -26,9 +27,3 @@ class Board
   end
 
 end
-
-
-[[Space.new('00'), Space.new('01'), Space.new('02'), Space.new('03')],
-[Space.new('10'), Space.new('11'), Space.new('12'), Space.new('13')],
-[Space.new('20'), Space.new('21'), Space.new('22'), Space.new('23')],
-[Space.new('30'), Space.new('31'), Space.new('32'), Space.new('33')]]
