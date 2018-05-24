@@ -5,12 +5,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 
 class BoardTest < MiniTest::Test
-  def test_it_exists
-    board = Board.new
-
-    assert_instance_of Board, board
-  end
-
   def test_board_is_created_with_sixteen_spaces
     board = Board.new
 
