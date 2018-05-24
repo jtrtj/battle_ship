@@ -1,7 +1,4 @@
-require './lib/input_converter.rb'
-
 class Computer
-  include InputConverter
   attr_reader :enemy,
               :destroyer,
               :carrier,
@@ -19,28 +16,28 @@ class Computer
     @carrier_position   = []
     @board              = Board.new
     @destroyer_spaces   =
-    [[board.spaces[0][0], board.spaces[0][1]], [board.spaces[0][1], board.spaces[0][2]], [board.spaces[0][2], board.spaces[0][3]],
-    [board.spaces[1][0], board.spaces[1][1]], [board.spaces[1][1], board.spaces[1][2]], [board.spaces[1][2], board.spaces[1][3]],
-    [board.spaces[2][0], board.spaces[2][1]], [board.spaces[2][1], board.spaces[2][2]], [board.spaces[2][2], board.spaces[2][3]],
-    [board.spaces[3][0], board.spaces[3][1]], [board.spaces[3][1], board.spaces[3][2]], [board.spaces[3][2], board.spaces[3][3]],
-    [board.spaces[0][0], board.spaces[1][0]], [board.spaces[0][1], board.spaces[1][1]], [board.spaces[0][2], board.spaces[1][2]],
-    [board.spaces[0][3], board.spaces[1][3]], [board.spaces[1][0], board.spaces[2][0]], [board.spaces[1][1], board.spaces[2][1]],
-    [board.spaces[1][2], board.spaces[2][2]], [board.spaces[1][3], board.spaces[2][3]], [board.spaces[2][0], board.spaces[3][0]],
-    [board.spaces[2][1], board.spaces[3][1]], [board.spaces[2][2], board.spaces[3][2]], [board.spaces[2][3], board.spaces[3][3]]]
+      [[board.spaces[0][0], board.spaces[0][1]], [board.spaces[0][1], board.spaces[0][2]], [board.spaces[0][2], board.spaces[0][3]],
+      [board.spaces[1][0], board.spaces[1][1]], [board.spaces[1][1], board.spaces[1][2]], [board.spaces[1][2], board.spaces[1][3]],
+      [board.spaces[2][0], board.spaces[2][1]], [board.spaces[2][1], board.spaces[2][2]], [board.spaces[2][2], board.spaces[2][3]],
+      [board.spaces[3][0], board.spaces[3][1]], [board.spaces[3][1], board.spaces[3][2]], [board.spaces[3][2], board.spaces[3][3]],
+      [board.spaces[0][0], board.spaces[1][0]], [board.spaces[0][1], board.spaces[1][1]], [board.spaces[0][2], board.spaces[1][2]],
+      [board.spaces[0][3], board.spaces[1][3]], [board.spaces[1][0], board.spaces[2][0]], [board.spaces[1][1], board.spaces[2][1]],
+      [board.spaces[1][2], board.spaces[2][2]], [board.spaces[1][3], board.spaces[2][3]], [board.spaces[2][0], board.spaces[3][0]],
+      [board.spaces[2][1], board.spaces[3][1]], [board.spaces[2][2], board.spaces[3][2]], [board.spaces[2][3], board.spaces[3][3]]]
     @carrier_spaces =
-    [[board.spaces[0][0], board.spaces[0][1], board.spaces[0][2]], [board.spaces[0][1], board.spaces[0][2], board.spaces[0][3]],
-     [board.spaces[1][0], board.spaces[1][1], board.spaces[1][2]], [board.spaces[1][1], board.spaces[1][2], board.spaces[1][3]],
-     [board.spaces[2][0], board.spaces[2][1], board.spaces[2][2]], [board.spaces[2][1], board.spaces[2][2], board.spaces[2][3]],
-     [board.spaces[3][0], board.spaces[3][1], board.spaces[3][2]], [board.spaces[3][1], board.spaces[3][2], board.spaces[3][3]],
-     [board.spaces[0][0], board.spaces[1][0], board.spaces[2][0]], [board.spaces[0][1], board.spaces[1][1], board.spaces[2][1]],
-     [board.spaces[0][2], board.spaces[1][2], board.spaces[2][2]], [board.spaces[0][3], board.spaces[1][3], board.spaces[2][3]],
-     [board.spaces[1][0], board.spaces[2][0], board.spaces[3][0]], [board.spaces[1][1], board.spaces[2][1], board.spaces[3][1]],
-     [board.spaces[1][2], board.spaces[2][2], board.spaces[3][2]], [board.spaces[1][3], board.spaces[2][3], board.spaces[3][3]]]
-     @hit_guesses =
-     [enemy.board.spaces[0][0], enemy.board.spaces[0][1], enemy.board.spaces[0][2], enemy.board.spaces[0][3],
-     enemy.board.spaces[1][0], enemy.board.spaces[1][1], enemy.board.spaces[1][2], enemy.board.spaces[1][3],
-     enemy.board.spaces[2][0], enemy.board.spaces[2][1], enemy.board.spaces[2][2], enemy.board.spaces[2][3],
-     enemy.board.spaces[3][0], enemy.board.spaces[3][1], enemy.board.spaces[3][2], enemy.board.spaces[3][3],]
+      [[board.spaces[0][0], board.spaces[0][1], board.spaces[0][2]], [board.spaces[0][1], board.spaces[0][2], board.spaces[0][3]],
+      [board.spaces[1][0], board.spaces[1][1], board.spaces[1][2]], [board.spaces[1][1], board.spaces[1][2], board.spaces[1][3]],
+      [board.spaces[2][0], board.spaces[2][1], board.spaces[2][2]], [board.spaces[2][1], board.spaces[2][2], board.spaces[2][3]],
+      [board.spaces[3][0], board.spaces[3][1], board.spaces[3][2]], [board.spaces[3][1], board.spaces[3][2], board.spaces[3][3]],
+      [board.spaces[0][0], board.spaces[1][0], board.spaces[2][0]], [board.spaces[0][1], board.spaces[1][1], board.spaces[2][1]],
+      [board.spaces[0][2], board.spaces[1][2], board.spaces[2][2]], [board.spaces[0][3], board.spaces[1][3], board.spaces[2][3]],
+      [board.spaces[1][0], board.spaces[2][0], board.spaces[3][0]], [board.spaces[1][1], board.spaces[2][1], board.spaces[3][1]],
+      [board.spaces[1][2], board.spaces[2][2], board.spaces[3][2]], [board.spaces[1][3], board.spaces[2][3], board.spaces[3][3]]]
+    @hit_guesses =
+      [enemy.board.spaces[0][0], enemy.board.spaces[0][1], enemy.board.spaces[0][2], enemy.board.spaces[0][3],
+      enemy.board.spaces[1][0], enemy.board.spaces[1][1], enemy.board.spaces[1][2], enemy.board.spaces[1][3],
+      enemy.board.spaces[2][0], enemy.board.spaces[2][1], enemy.board.spaces[2][2], enemy.board.spaces[2][3],
+      enemy.board.spaces[3][0], enemy.board.spaces[3][1], enemy.board.spaces[3][2], enemy.board.spaces[3][3],]
   end
 
   def place_destroyer
@@ -56,6 +53,11 @@ class Computer
     mark_spaces_occupied(@carrier_position)
   end
 
+  def make_a_guess_with_missile
+    guess = make_a_hit_guess(@hit_guesses)
+    launch_missile(guess)
+  end
+
   def pick_spaces(ship_spaces, choice_index)
     ship_spaces[choice_index]
   end
@@ -68,11 +70,7 @@ class Computer
 
   def launch_missile(guess)
     damage_ship(guess)
-    @enemy.all_spaces.each do |space|
-      if space == guess
-        space.hit
-      end
-    end
+    hit_or_miss(guess)
   end
 
   def damage_ship(guess)
@@ -95,10 +93,18 @@ class Computer
   end
 
   def make_a_hit_guess(guesses)
-    guesses.shuffle
+    guesses.shuffle!
     guesses.shift
   end
-  
+
+  def hit_or_miss(guess)
+    @enemy.all_spaces.each do |space|
+      if space == guess
+        space.hit
+      end
+    end
+  end
+
   def all_spaces
     @board.spaces.flatten
   end

@@ -15,6 +15,14 @@ class ComputerTest < MiniTest::Test
     assert_instance_of Computer, computer
   end
 
+  def test_computer_starts_with_two_ships
+    opponent = Player.new
+    computer = Computer.new(opponent)
+
+    assert_instance_of Ship, computer.destroyer
+    assert_instance_of Ship, computer.carrier
+  end
+
   def test_it_can_place_destroyer
     opponent = Player.new
     computer = Computer.new(opponent)
@@ -59,4 +67,22 @@ class ComputerTest < MiniTest::Test
     assert_equal 'H', opponent.board.spaces[0][0].status
     assert_equal 1, opponent.destroyer.hit_points
   end
+
+  def test_computer_can_make_a_guess
+    opponent = Player.new
+    computer = Computer.new(opponent)
+    computer.make_a_guess_with_missile
+
+    assert opponent.all_spaces.any? {|space| space.status.include?('M')}
+  end
+
+  def test_it_can_make_a_flat_array_of_all_spaces_on_a_board
+    opponent = Player.new
+    computer = Computer.new(opponent)
+    board_spaces = computer.all_spaces
+
+    assert board_spaces.any? {|space| space.class == Space}
+    assert_equal 16, board_spaces.length
+  end
+
 end

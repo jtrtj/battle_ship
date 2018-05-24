@@ -123,10 +123,4 @@ class ShipTest < MiniTest::Test
     assert_equal expected, actual
   end
 
-  # def test_it_can_fill_in_middle_carrier_space
-  #   skip
-  #   player = Player.new
-  #   player
-  # end
-
 end
