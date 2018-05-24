@@ -7,8 +7,10 @@ class Board
   end
 
   def self.of_size(board_size)
-    (0..3).map do |space|
-      [Space.new(space.to_s+'0'), Space.new(space.to_s+'1'), Space.new(space.to_s+'2'), Space.new(space.to_s+'3')]
+    (0...board_size).map do |space|
+      (0...board_size).map do |space_2|
+        Space.new(space.to_s + space_2.to_s)
+      end
     end
   end
 
