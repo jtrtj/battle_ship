@@ -1,20 +1,36 @@
 require './test/test_helper.rb'
 require './lib/board.rb'
-require './lib/player.rb'
 require './lib/space.rb'
-require './lib/ship.rb'
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'pry'
 
 class BoardTest < MiniTest::Test
   def test_it_exists
     board = Board.new
+
     assert_instance_of Board, board
   end
 
   def test_board_is_created_with_sixteen_spaces
     board = Board.new
+
+    assert_instance_of Space, board.spaces[1][1]
     assert_equal 16, board.spaces.flatten.length
+  end
+
+  def test_board_can_be_printed
+    board = Board.new
+    expected = "===========\n. 1 2 3 4\nA        \nB        \nC        \nD        \n==========="
+    actual = board.print_board
+
+    assert_equal expected, actual
+  end
+
+  def test_board_row_can_be_printed
+    board = Board.new
+    expected = '       '
+    actual = board.print_row(0)
+
+    assert_equal expected, actual
   end
 end
