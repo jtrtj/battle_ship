@@ -5,7 +5,6 @@ require './lib/board.rb'
 require './lib/space.rb'
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'pry'
 
 class ShipTest < MiniTest::Test
   def test_it_exists
