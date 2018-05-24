@@ -12,6 +12,7 @@ class Board
     "===========\n. 1 2 3 4\nA #{print_row(0)}\nB #{print_row(1)}\nC #{print_row(2)}\nD #{print_row(3)}\n==========="
   end
 
+  private
   def print_row(row)
     @spaces[row].map do |space|
       space.status

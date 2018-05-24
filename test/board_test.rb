@@ -19,12 +19,4 @@ class BoardTest < MiniTest::Test
 
     assert_equal expected, actual
   end
-
-  def test_board_row_can_be_printed
-    board = Board.new
-    expected = '       '
-    actual = board.print_row(0)
-
-    assert_equal expected, actual
-  end
 end
