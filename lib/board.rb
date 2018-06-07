@@ -18,7 +18,7 @@ class Board
   def print_board
     [
       '=' * border_length,
-      '. 1 2 3 4',
+      top_label,
       "A #{print_row(0)}",
       "B #{print_row(1)}",
       "C #{print_row(2)}",
@@ -36,5 +36,9 @@ class Board
 
   def border_length
     ((BOARD_SIZE + 1) * 2) + 1
+  end
+
+  def top_label
+    '. '.concat((1..BOARD_SIZE).to_a.join(" "))
   end
 end
