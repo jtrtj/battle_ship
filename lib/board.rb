@@ -13,11 +13,18 @@ class Board
         Space.new(row.to_s + column.to_s)
       end
     end
-    binding.pry
   end
 
   def print_board
-    "===========\n. 1 2 3 4\nA #{print_row(0)}\nB #{print_row(1)}\nC #{print_row(2)}\nD #{print_row(3)}\n==========="
+    [
+      '=' * border_length,
+      '. 1 2 3 4',
+      "A #{print_row(0)}",
+      "B #{print_row(1)}",
+      "C #{print_row(2)}",
+      "D #{print_row(3)}",
+      '=' * border_length
+    ].join("\n")
   end
 
   private
@@ -27,4 +34,7 @@ class Board
     end.join(' ')
   end
 
+  def border_length
+    ((BOARD_SIZE + 1) * 2) + 1
+  end
 end
