@@ -16,15 +16,8 @@ class Board
   end
 
   def print_board
-    [
-      '=' * border_length,
-      top_label,
-      "A #{print_row(0)}",
-      "B #{print_row(1)}",
-      "C #{print_row(2)}",
-      "D #{print_row(3)}",
-      '=' * border_length
-    ].join("\n")
+    border = '=' * border_length
+    ([ border, top_label ] + actual_board + [ border ]).join("\n")
   end
 
   private
@@ -39,6 +32,18 @@ class Board
   end
 
   def top_label
-    '. '.concat((1..BOARD_SIZE).to_a.join(" "))
+    '. '.concat((1..BOARD_SIZE).to_a.join(' '))
+  end
+
+  def actual_board
+    Array.new(BOARD_SIZE) do |row|
+      "#{left_label(row)} #{print_row(row)}"
+    end
+  end
+
+  def left_label(index)
+    label = "A"
+    index.times {label.next!}
+    label
   end
 end
