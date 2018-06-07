@@ -41,7 +41,7 @@ class Board
     end
   end
 
-  def left_label(index)
+  def left_label(index, label = "A")
     label = "A"
     index.times {label.next!}
     label
