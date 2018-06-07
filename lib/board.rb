@@ -16,7 +16,6 @@ class Board
   end
 
   def print_board
-    border = '=' * border_length
     ([ border, top_label ] + actual_board + [ border ]).join("\n")
   end
 
@@ -27,8 +26,8 @@ class Board
     end.join(' ')
   end
 
-  def border_length
-    ((BOARD_SIZE + 1) * 2) + 1
+  def border
+    '=' * (((BOARD_SIZE + 1) * 2) + 1)
   end
 
   def top_label
@@ -42,8 +41,6 @@ class Board
   end
 
   def left_label(index, label = "A")
-    label = "A"
-    index.times {label.next!}
-    label
+    if index <= 0 then label else left_label(index - 1, label.next) end
   end
 end
