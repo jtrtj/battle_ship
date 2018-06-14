@@ -14,6 +14,7 @@ class BoardTest < MiniTest::Test
 
   def test_board_can_be_printed
     board = Board.new
+    require 'pry'; binding.pry
     expected = "===========\n. 1 2 3 4\nA        \nB        \nC        \nD        \n==========="
     actual = board.print_board
 
